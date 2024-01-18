@@ -30,7 +30,7 @@ class _StartScreenState extends State<StartScreen> {
         ),
         OutlinedButton.icon(
           onPressed: () {
-            switchScreen(); //
+            widget.switchScreen(); //
           },
           label: const Text("Start Quiz",
           ),
