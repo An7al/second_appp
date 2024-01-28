@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatefulWidget {
-  StartScreen(this.switchScreen, {super.key,});
-  void Function() switchScreen; // instantiating other class's method with constructor to call it  unlike calling ClassObject.method() or making it static with Class.method()
+  StartScreen(this.switcher, {super.key,});
+  void Function() switcher; // instantiating other class's method with constructor to call it  unlike calling ClassObject.method() or making it static with Class.method()
   @override
   State<StartScreen> createState() => _StartScreenState();
 }
@@ -30,7 +30,7 @@ class _StartScreenState extends State<StartScreen> {
         ),
         OutlinedButton.icon(
           onPressed: () {
-            widget.switchScreen(); //
+            widget.switcher(); //
           },
           label: const Text("Start Quiz",
           ),
