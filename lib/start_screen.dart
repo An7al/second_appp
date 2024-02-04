@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:second_app/quiz.dart';
 
 class StartScreen extends StatefulWidget {
-  StartScreen(this.switcher, {super.key,});
-  void Function() switcher; // instantiating other class's method with constructor to call it  unlike calling ClassObject.method() or making it static with Class.method()
+  StartScreen(
+    this.switcher, {
+    super.key,
+  });
+
+  void Function()
+      switcher; // instantiating other class's method with constructor to call it  unlike calling ClassObject.method() or making it static with Class.method()
   @override
   State<StartScreen> createState() => _StartScreenState();
 }
@@ -32,7 +38,8 @@ class _StartScreenState extends State<StartScreen> {
           onPressed: () {
             widget.switcher(); //
           },
-          label: const Text("Start Quiz",
+          label: const Text(
+            "Start Quiz",
           ),
           icon: const Icon(Icons.arrow_drop_up_outlined),
         )
