@@ -1,4 +1,3 @@
-
 import 'package:second_app/models/quiz_question.dart';
 
 const questions = [

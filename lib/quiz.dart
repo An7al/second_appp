@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:second_app/main.dart';
 import 'package:second_app/questions_screen.dart';
+import 'package:second_app/result_screen.dart';
 import 'package:second_app/start_screen.dart';
+import 'package:second_app/data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -13,22 +15,27 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  var choice = 1;
+   List<String> selectedAnswers = [];
+
+  var activeScreen = "startScreen";
 
   //  can also use keyword "late" :  works well instead of initState() method
-  Widget? activeScreen;
-
-  @override
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
-      choice = 2;
+      activeScreen = "questions";
     });
+  }
+
+  void addAnswer(String answer) {
+    selectedAnswers.add(answer);
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [] ;
+        activeScreen = 'results-screen';
+      });
+
+    }
   }
 
   @override
@@ -41,8 +48,10 @@ class _QuizState extends State<Quiz> {
                         colors: [Colors.deepPurple, Colors.black],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter)),
-                child: choice == 1
-                    ? StartScreen(switchScreen)
-                    : const QuestionsScreen())));
+                child: activeScreen == "results-screen"
+                    ? ResultsScreen(chosenAnswers: selectedAnswers,)
+                    : activeScreen == "startScreen"
+                        ? StartScreen(switchScreen)
+                        : QuestionsScreen(onAddAnswer: addAnswer))));
   }
 }
